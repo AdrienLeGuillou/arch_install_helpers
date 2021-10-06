@@ -11,14 +11,14 @@ do
     read -p "Enter the hostname for this machine: " NEW_HOSTNAME
     echo
 
-    echo The new hostname will be:  ${NEW_HOSTNAME}
-    read -p "is this correct? [Y/n] " CORRECT
+    echo "The new hostname will be: ${NEW_HOSTNAME}"
+    read -p "is this correct? [y/N] " CORRECT
 
     case $CORRECT in
         [yY])
             break ;;
         *)
-            echo Starting over
+            echo "Starting over"
             ;;
     esac
 done
@@ -29,7 +29,7 @@ echo '127.0.0.1 localhost
 ::1\t localhost
 127.0.1.1\t $NEW_HOSTNAME' > /etc/hosts
 
-echo Installing new packages
+echo "Installing new packages"
 
 pacman -S archlinux-keyring
 pacman -S grub networkmanager base-devel git zsh sudo chezmoi
@@ -41,14 +41,14 @@ do
     read -p "Enter the new user name: " NEW_NAME
     echo
 
-    echo The new user will be:  ${NEW_NAME}
-    read -p "is this correct? [Y/n] " CORRECT
+    echo "The new user will be: ${NEW_NAME}"
+    read -p "is this correct? [y/N] " CORRECT
 
     case $CORRECT in
         [yY])
             break ;;
         *)
-            echo Starting over
+            echo "Starting over"
             ;;
     esac
 done
@@ -58,21 +58,21 @@ useradd -m -G wheel,input,video,audio,storage,disk,kvm  -s /bin/zsh $NEW_NAME
 
 while true
 do
-    echo SUDO configuration, please edit the SUDOER file
+    echo 'SUDO configuration, please edit the SUDOER file'
     EDITOR=nvim visudo
 
-    read -p "Is everything correct? [Y/n] " CORRECT
+    read -p "Is everything correct? [y/N] " CORRECT
 
     case $CORRECT in
         [yY])
             break ;;
         *)
-            echo Starting over
+            echo 'Starting over'
             ;;
     esac
 done
 CORRECT=""
 
-echo Finished !
-echo Before restarting set the password for root and $NEW_NAME with passwd
-echo and setup grub
+echo "Finished !"
+echo 'Before restarting set the password for root and $NEW_NAME with passwd
+and setup grub'
