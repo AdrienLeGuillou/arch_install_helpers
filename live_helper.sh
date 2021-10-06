@@ -42,4 +42,7 @@ pacstrap /mnt base linux linux-firmware neovim
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo 'Pre chroot phase finished. Run `arch-chroot /mnt` and run the next script'
+curl -sL https://git.io/Jwk0Z > /mnt/tmp.sh
+chmod +x /mnt/tmp.sh
+
+echo 'Pre chroot phase finished. Run `arch-chroot /mnt` and run the next script (tmp.sh)'
